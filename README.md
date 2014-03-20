@@ -1,8 +1,37 @@
 PolyCalc
 ========
 
-A Javascript-based CSS3 calc() polyfill
+A Javascript-based CSS3 calc() polyfill.
 
-Update:
-I am no longer maintaining this project.
-It has hit a point in the web where I believe it is nearly a requirement to have an up-to-date browser, and naturally a browser that now natively supports the calc() function. I will, however, happily transfer ownership to anybody who wishes to continue to update PolyCalc.
+Originally developed by [Chris Kay](https://github.com/CJKay/PolyCalc).
+Reworked to use simple (and lite) CSS parser. So currently only jQuery is required.
+
+Usage
+-----
+
+In JavaScript run (after page is ready or changed):
+```
+polyCalc.run();
+```
+
+Example CSS:
+```
+.inline-controles {
+	float: left;
+	box-sizing: border-box;
+}
+.inline-controles.text {
+	width: calc(100% - 9em);
+	width: -webkit-calc(100% - 9em);
+}
+.inline-controles.short-button {
+	width:3em !important;
+}
+.inline-controles.long-btn
+{
+	width:6em;
+}
+```
+
+Note that by default PolyCalc searches only for `width` and `height` properties. See PolyCalc source on information how to add other props to the list.
+
