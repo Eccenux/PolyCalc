@@ -79,11 +79,15 @@
 					$(selector).each(function() {
 						var currentElement = $(this);
 						for (var i=0; i<properties.length; i++) {
-							var newValue = parseExpression(properties[i].property, properties[i].value, currentElement) + "px";
+							if (properties[i].value.search(calcMatcher) < 0) {
+								continue;
+							}
+							var propertyName = properties[i].property;
+							var newValue = parseExpression(propertyName, properties[i].value, currentElement) + "px";
 							if (properties[i].priority.length) {
 								newValue += "!" + properties[i].priority;
 							}
-							$(this).css(properties[i].property, newValue);
+							currentElement.css(propertyName, newValue);
 						};
 					});
 				})
@@ -98,13 +102,10 @@
 		 * @param {String} propertyName Name of a CSS property.
 		 * @param {String} expression Value of the property.
 		 * @param {jQuery} element Element for which expression must be evaluated.
-		 * @returns {unresolved}
+		 * @returns {Number} New value.
 		 */
 		var parseExpression = function(propertyName, expression, element) {
 			var newExpression = "";
-			if (expression.search(calcMatcher) < 0) {
-				return;
-			}
 			expression = expression.match(calcMatcher)[1];
 
 			var value = -1;
