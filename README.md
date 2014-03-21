@@ -9,9 +9,26 @@ Reworked to use simple (and lite) CSS parser. So currently only jQuery is requir
 Usage
 -----
 
-In JavaScript run (after page is ready or changed):
+In JavaScript you must run PolyCalc when page is ready or changed. So minimal JS is:
 ```js
-polyCalc.run();
+$(function() {
+	polyCalc.run();
+});
+$(window).resize(function() {
+	polyCalc.run();
+});
+```
+
+In jQuery Mobile (up to 1.4) you should use something like:
+```js
+// calc() when page elements are visible (and actually have size)
+$(document).bind("pageshow", function() {
+	polyCalc.run();
+});
+// after window resize (including possibly orientation change)
+$(window).resize(function() {
+	polyCalc.run();
+});
 ```
 
 Example CSS:
