@@ -1,13 +1,36 @@
 PolyCalc
 ========
 
-A Javascript-based CSS3 calc() polyfill.
+A JavaScript based CSS3 `calc()` polyfill.
 
 Originally developed by [Chris Kay](https://github.com/CJKay/PolyCalc).
 Reworked to use simple (and lite) CSS parser. So currently only jQuery is required.
 
-Usage
------
+Usage notes
+-----------
+
+You need both libraries with `SimpleCssParser` over `polycalc`:
+
+```html
+<link rel="stylesheet" data-PolyCalc="1" href="SimpleCssParser.js">
+<link rel="stylesheet" data-PolyCalc="1" href="polycalc.js">
+```
+
+Note that you need to run PolyCalc both when page is loaded and resized. In some cases you might need to run PolyCalc also when elements resize (e.g. after loading additional content). You can use [jQuery resize plugin](http://benalman.com/projects/jquery-resize-plugin/) for that.
+
+Also note that `resize` event does not fire when scrollbars appear. Thankfully you can force scrollbars to always appear. Don't worry - they won't be visible on mobile browsers.
+```css
+html {
+	overflow-y: scroll;
+	margin: 0;
+	padding: 0;
+}
+```
+
+Usage examples
+--------------
+
+### jQuery ###
 
 In JavaScript you must run PolyCalc when page is ready or changed. So minimal JS is:
 ```js
@@ -18,6 +41,8 @@ $(window).resize(function() {
 	polyCalc.run();
 });
 ```
+
+### jQuery Mobile ###
 
 In jQuery Mobile (up to 1.4) you should use something like:
 ```js
@@ -31,7 +56,9 @@ $(window).resize(function() {
 });
 ```
 
-Example CSS:
+### Example page ###
+
+CSS (`example.css`):
 ```css
 .inline-controls div {
 	float: left;
@@ -50,7 +77,7 @@ Example CSS:
 }
 ```
 
-Example HTML:
+HTML:
 ```html
 <link rel="stylesheet" data-PolyCalc="1" href="example.css">
 
