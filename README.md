@@ -12,11 +12,18 @@ Usage notes
 You need both libraries with `SimpleCssParser` over `polycalc`:
 
 ```html
-<link rel="stylesheet" data-PolyCalc="1" href="SimpleCssParser.js">
-<link rel="stylesheet" data-PolyCalc="1" href="polycalc.js">
+<script src="SimpleCssParser.js" type="text/javascript"></script>
+<script src="polycalc.js" type="text/javascript"></script>
 ```
 
-Note that you need to run PolyCalc both when page is loaded and resized. In some cases you might need to run PolyCalc also when elements resize (e.g. after loading additional content). You can use [jQuery resize plugin](http://benalman.com/projects/jquery-resize-plugin/) for that.
+You must also mark your CSS with `data-PolyCalc="1"` attribute:
+```html
+<link href="someCssWithCalc.css" rel="stylesheet" data-PolyCalc="1">
+```
+
+Then you are required to run function `polyCalc.run();` both when your page is ready and when it's resized. You'll find a jQuery and jQuery Mobile example below.
+
+For most cases that's it. You might need to also run PolyCalc when elements resize (e.g. after loading additional content). This should be rare, but fortunatelly you can use [jQuery resize plugin](http://benalman.com/projects/jquery-resize-plugin/) to get a resize event on any elements.
 
 Also note that `resize` event does not fire when scrollbars appear. Thankfully you can force scrollbars to always appear. Don't worry - they won't be visible on mobile browsers.
 ```css
@@ -141,3 +148,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
+ href=
